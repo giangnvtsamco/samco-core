@@ -1,4 +1,4 @@
-/* samco-core · ui.js · v1.0
+/* samco-core · ui.js · v1.1
    Hàm giao diện dùng chung: thông báo, định dạng, chống chèn mã, bỏ dấu, ảnh, file. */
 const $ = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
@@ -70,3 +70,17 @@ const store = {
   set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} },
   del(k) { try { localStorage.removeItem(k); } catch (e) {} }
 };
+
+/* Chân trang: tên app · phiên bản · bản quyền. Tự báo khi có bản mới (đọc version.json của app). */
+function appFoot(name, ver, box) {
+  const f = box || document.body.appendChild(document.createElement('footer'));
+  f.classList.add('app-foot');
+  f.innerHTML = esc(name) + ' · phiên bản ' + esc(ver) + '<br>© ' + new Date().getFullYear() + ' VinFast SAMCO Bình Tân · Lưu hành nội bộ';
+  const check = () => fetch('version.json?t=' + Date.now(), { cache: 'no-store' }).then(r => r.ok ? r.json() : null).then(j => {
+    if (!j || !j.v || j.v === ver || document.querySelector('.upd-bar')) return;
+    const b = document.createElement('button'); b.type = 'button'; b.className = 'upd-bar'; b.textContent = 'Đã có bản mới · bấm để tải lại';
+    b.onclick = () => location.reload(); document.body.appendChild(b);
+  }).catch(() => {});
+  check();
+  document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible') check(); });
+}

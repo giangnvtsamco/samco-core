@@ -143,3 +143,7 @@ table.tbl{border-collapse:collapse;width:100%;font-size:13px}
 @keyframes sp{to{transform:rotate(360deg)}}
 
 @media (min-width:900px){ .title{font-size:44px} }
+
+/* Chân trang + thanh báo bản mới */
+.app-foot{text-align:center;color:var(--muted);font-size:11px;line-height:1.7;padding:28px 12px 12px}
+.upd-bar{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(88px + env(safe-area-inset-bottom));z-index:80;border:0;border-radius:999px;background:var(--accent);color:var(--accent-ink);font:700 14px var(--body);padding:12px 20px;box-shadow:0 8px 24px rgba(17,24,39,.28);cursor:pointer;white-space:nowrap}

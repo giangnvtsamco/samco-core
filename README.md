@@ -22,4 +22,5 @@ Nạp theo **phiên bản**, không nạp file ở thư mục gốc:
 - File ở thư mục gốc giữ lại để app cũ (nếu còn) không bị lỗi; không sửa nữa.
 
 ## Phiên bản
+- v1.1 (17/11/2026): thêm `appFoot()` (chân trang phiên bản + tự báo khi có bản mới, đọc `version.json` của app) và kiểu `.app-foot`, `.upd-bar`. Không đổi hàm cũ.
 - v1 (11/2026): bản đầu, App Sale và Xe Demo dùng.
